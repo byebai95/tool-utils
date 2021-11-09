@@ -14,9 +14,4 @@ public class UuidUtils {
         return UUID.randomUUID().toString().replace("-","");
     }
 
-    public static void main(String[] args) {
-        for(int i=0;i<10;i++){
-            System.out.println(UuidUtils.getUniqueId());
-        }
-    }
 }
