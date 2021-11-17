@@ -1,6 +1,6 @@
 package app.utils;
 
-import app.model.HttpRequestVO;
+import app.model.HttpRequestParam;
 import org.apache.http.*;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.*;
@@ -11,7 +11,6 @@ import org.apache.http.impl.client.*;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -20,6 +19,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * http 请求工具类
+ */
 
 public class HttpRequestUtils {
     private static final CloseableHttpClient httpClient = HttpClientBuilder.create().build();
@@ -28,27 +30,27 @@ public class HttpRequestUtils {
     public HttpRequestUtils() {
     }
 
-    public static String getRequest(HttpRequestVO request) {
+    public static String getRequest(HttpRequestParam request) {
         String response = doRequest(request, HttpRequestUtils.HttpMethod.GET);
         return response;
     }
 
-    public static String postRequest(HttpRequestVO request) {
+    public static String postRequest(HttpRequestParam request) {
         String response = doRequest(request, HttpRequestUtils.HttpMethod.POST);
         return response;
     }
 
-    public static String putRequest(HttpRequestVO request) {
+    public static String putRequest(HttpRequestParam request) {
         String response = doRequest(request, HttpRequestUtils.HttpMethod.PUT);
         return response;
     }
 
-    public static String deleteRequest(HttpRequestVO request) {
+    public static String deleteRequest(HttpRequestParam request) {
         String response = doRequest(request, HttpRequestUtils.HttpMethod.DELETE);
         return response;
     }
 
-    private static String doRequest(HttpRequestVO request, HttpRequestUtils.HttpMethod method) {
+    private static String doRequest(HttpRequestParam request, HttpRequestUtils.HttpMethod method) {
         RequestConfig requestConfig = createRequestConfig(request);
         URI uri = createRequestUri(request);
         Header[] commonHeaderArr = null;
@@ -106,7 +108,7 @@ public class HttpRequestUtils {
         return result;
     }
 
-    private static RequestConfig createRequestConfig(HttpRequestVO request) {
+    private static RequestConfig createRequestConfig(HttpRequestParam request) {
         int connectionRequestTimeout = request.getConnectionRequestTimeout();
         int connectTimeout = request.getConnectTimeout();
         int socketTimeout = request.getSocketTimeout();
@@ -114,7 +116,7 @@ public class HttpRequestUtils {
         return requestConfig;
     }
 
-    private static URI createRequestUri(HttpRequestVO request) {
+    private static URI createRequestUri(HttpRequestParam request) {
         URI uri = null;
 
         try {
@@ -161,7 +163,7 @@ public class HttpRequestUtils {
         return nameValuePairList;
     }
 
-    private static HttpEntity createHttpEntity(HttpRequestVO request) {
+    private static HttpEntity createHttpEntity(HttpRequestParam request) {
         HttpEntity httpEntity = null;
         Map<String, Object> bodyParam = request.getBodyParams();
         if (bodyParam != null) {

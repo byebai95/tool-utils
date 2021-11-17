@@ -2,7 +2,7 @@ package app.model;
 
 import java.util.Map;
 
-public class HttpRequestVO {
+public class HttpRequestParam {
     private static final int CONNECTION_REQUEST_TIMEOUT = 3000;
     private static final int CONNECTION_TIMEOUT = 3000;
     private static final int SOCKET_TIMEOUT = 30000;
@@ -16,57 +16,57 @@ public class HttpRequestVO {
     private final int connectTimeout;
     private final int socketTimeout;
 
-    public HttpRequestVO() {
+    public HttpRequestParam() {
         this.connectionRequestTimeout = CONNECTION_REQUEST_TIMEOUT;
         this.connectTimeout = CONNECTION_TIMEOUT;
         this.socketTimeout = SOCKET_TIMEOUT;
     }
 
-    public HttpRequestVO createQueryRequestByMap(String uri, Map<String, Object> queryParams) {
+    public HttpRequestParam createQueryRequestByMap(String uri, Map<String, Object> queryParams) {
         return this.createQueryRequestByMap(uri, queryParams, null);
     }
 
-    public HttpRequestVO createQueryRequestByMap(String uri, Map<String, Object> queryParams, Map<String, Object> headers) {
+    public HttpRequestParam createQueryRequestByMap(String uri, Map<String, Object> queryParams, Map<String, Object> headers) {
         this.uri = uri;
         this.queryParams = queryParams;
         this.headers = headers;
         return this;
     }
 
-    public HttpRequestVO createQueryRequestByObject(String uri, Object queryObject) {
+    public HttpRequestParam createQueryRequestByObject(String uri, Object queryObject) {
         return this.createQueryRequestByObject(uri, queryObject, null);
     }
 
-    public HttpRequestVO createQueryRequestByObject(String uri, Object queryObject, Map<String, Object> headers) {
+    public HttpRequestParam createQueryRequestByObject(String uri, Object queryObject, Map<String, Object> headers) {
         this.uri = uri;
         this.queryObject = queryObject;
         this.headers = headers;
         return this;
     }
 
-    public HttpRequestVO createBodyRequestByMap(String uri, Map<String, Object> bodyParams) {
+    public HttpRequestParam createBodyRequestByMap(String uri, Map<String, Object> bodyParams) {
         return this.createBodyRequestByMap(uri, this.queryParams, null);
     }
 
-    public HttpRequestVO createBodyRequestByMap(String uri, Map<String, Object> bodyParams, Map<String, Object> headers) {
+    public HttpRequestParam createBodyRequestByMap(String uri, Map<String, Object> bodyParams, Map<String, Object> headers) {
         this.uri = uri;
         this.bodyParams = bodyParams;
         this.headers = headers;
         return this;
     }
 
-    public HttpRequestVO createBodyRequestByObject(String uri, Object bodyObject) {
+    public HttpRequestParam createBodyRequestByObject(String uri, Object bodyObject) {
         return this.createBodyRequestByObject(uri, bodyObject, null);
     }
 
-    public HttpRequestVO createBodyRequestByObject(String uri, Object bodyObject, Map<String, Object> headers) {
+    public HttpRequestParam createBodyRequestByObject(String uri, Object bodyObject, Map<String, Object> headers) {
         this.uri = uri;
         this.bodyObject = bodyObject;
         this.headers = headers;
         return this;
     }
 
-    private HttpRequestVO(String uri, Map<String, Object> queryParams, Object queryObject, Map<String, Object> bodyParams, Object bodyObject, Map<String, Object> headers, int connectionRequestTimeout, int connectTimeout, int socketTimeout) {
+    private HttpRequestParam(String uri, Map<String, Object> queryParams, Object queryObject, Map<String, Object> bodyParams, Object bodyObject, Map<String, Object> headers, int connectionRequestTimeout, int connectTimeout, int socketTimeout) {
         this.uri = uri;
         this.queryParams = queryParams;
         this.queryObject = queryObject;
@@ -78,8 +78,8 @@ public class HttpRequestVO {
         this.socketTimeout = socketTimeout;
     }
 
-    public static HttpRequestVO.Builder custom() {
-        return new HttpRequestVO.Builder();
+    public static HttpRequestParam.Builder custom() {
+        return new HttpRequestParam.Builder();
     }
 
     public String getUri() {
@@ -171,8 +171,8 @@ public class HttpRequestVO {
             this.socketTimeout = socketTimeout;
         }
 
-        public HttpRequestVO build() {
-            return new HttpRequestVO(this.uri, this.queryParams, this.queryObject, this.bodyParams, this.bodyObject, this.headers, this.connectionRequestTimeout, this.connectTimeout, this.socketTimeout);
+        public HttpRequestParam build() {
+            return new HttpRequestParam(this.uri, this.queryParams, this.queryObject, this.bodyParams, this.bodyObject, this.headers, this.connectionRequestTimeout, this.connectTimeout, this.socketTimeout);
         }
     }
 }

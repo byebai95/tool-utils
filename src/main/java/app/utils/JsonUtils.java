@@ -5,10 +5,17 @@ import com.alibaba.fastjson.JSONObject;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *  json 对象转换工具
+ */
 public class JsonUtils {
 
     public static String obj2json(Object obj){
         return JSON.toJSONString(obj);
+    }
+
+    public static <T> T json2obj(String jsonStr,Class<T> cls){
+        return JSON.parseObject(jsonStr,cls);
     }
 
     public static Map<String,Object> obj2Map(Object obj){
@@ -20,9 +27,6 @@ public class JsonUtils {
         return JSON.parseArray(jsonStr,cls);
     }
 
-    public static <T> T json2obj(String jsonStr,Class<T> cls){
-        return JSON.parseObject(jsonStr,cls);
-    }
 
     public static Map json2Map(String jsonStr){
         return JSON.parseObject(jsonStr,Map.class);

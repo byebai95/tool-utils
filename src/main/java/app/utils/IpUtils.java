@@ -4,6 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+/**
+ * 获取当前访问请求 IP 地址
+ */
+
 public class IpUtils {
 
     /**

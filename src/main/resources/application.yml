@@ -1,6 +1,0 @@
-spring:
-  redis:
-    host: XXX
-    port: 6379
-    password: XX
-    database: 0
