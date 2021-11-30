@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <!--master 提交-->
+    <!--hotfix 修复-->
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
