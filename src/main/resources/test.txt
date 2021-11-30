@@ -1,5 +1,3 @@
 testing 分支
 
-master 提交
 
-origin/master 提交
